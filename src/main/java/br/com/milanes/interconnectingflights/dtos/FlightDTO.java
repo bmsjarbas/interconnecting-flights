@@ -13,14 +13,6 @@ public class FlightDTO {
         this.arrivalTime = arrivalTime;
     }
 
-    public String getCarrierCode() {
-        return carrierCode;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
     public String getDepartureTime() {
         return departureTime;
     }

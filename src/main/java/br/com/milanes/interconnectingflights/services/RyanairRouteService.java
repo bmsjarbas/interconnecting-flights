@@ -12,11 +12,13 @@ public class RyanairRouteService implements RouteService {
     private WebClient webClient;
 
     RyanairRouteService(WebClient.Builder webClientBuilder){
-        this.webClient = webClientBuilder.baseUrl("").build();
+        this.webClient = webClientBuilder
+                .baseUrl("https://services-api.ryanair.com")
+                .build();
     }
 
     public Flux<RouteDTO> getAvailableRoutes() {
-        return webClient.get().uri("/routes")
+        return webClient.get().uri("/locate/3/routes")
                 .retrieve()
                 .bodyToFlux(RouteDTO.class)
                 .filter(routeDTO -> routeDTO.getAirportConnectingTo() == null &&

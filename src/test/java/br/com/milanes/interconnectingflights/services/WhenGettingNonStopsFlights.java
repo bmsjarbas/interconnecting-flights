@@ -44,7 +44,8 @@ public class WhenGettingNonStopsFlights {
 
     @Test
     void aListOfFlightsGivenTheFiltersAreReturned(){
-
+        String departureAirport = "DUB";
+        String arrivalAirport = "WRO";
         FlightDTO flight = new FlightDTO("FR",
                 "1616",
                 "09:00",
@@ -61,9 +62,14 @@ public class WhenGettingNonStopsFlights {
         String isoArrivalDatetime = "2023-01-01T13:00:00";
         LocalDateTime departureTimeForFirstFlight = LocalDateTime.parse(isoDepartureDate);
         LocalDateTime arrivalDatetimeForFirstFlight = LocalDateTime.parse(isoArrivalDatetime);
+        String uri = String.format("/timtbl/3/schedules/{departure}/{arrival}/years/{year}/months/{month}",
+                departureAirport,
+                arrivalAirport,
+                departureTimeForFirstFlight.getYear(),
+                departureTimeForFirstFlight.getMonth().getValue());
 
         when(webClientMock.get()).thenReturn(requestHeadersUriMock);
-        when(requestHeadersUriMock.uri(""))
+        when(requestHeadersUriMock.uri(uri))
                 .thenReturn(requestHeadersMock);
         when(requestHeadersMock.retrieve()).thenReturn(responseMock);
         when(responseMock.bodyToMono(ScheduleDTO.class)).thenReturn(Mono.just(scheduleDTO));

@@ -35,6 +35,9 @@ public class WhenGettingAllAvailableRoutes {
     void setUp() {
         when(webClientBuilder.baseUrl(anyString())).thenReturn(webClientBuilder);
         when(webClientBuilder.baseUrl(anyString()).build()).thenReturn(webClientMock);
+        when(webClientMock.get()).thenReturn(requestHeadersUriMock);
+        when(requestHeadersUriMock.uri("/locate/3/routes")).thenReturn(requestHeadersMock);
+        when(requestHeadersMock.retrieve()).thenReturn(responseMock);
         this.routeService = new RyanairRouteService(webClientBuilder);
     }
 
@@ -61,9 +64,6 @@ public class WhenGettingAllAvailableRoutes {
 
         RouteDTO[] routeDTOS = new RouteDTO[] { routeOperatedByRyanair , routeDoesntOperatedByRyanair, secondRouteOperatedByRyanairDTO};
 
-        when(webClientMock.get()).thenReturn(requestHeadersUriMock);
-        when(requestHeadersUriMock.uri("/routes")).thenReturn(requestHeadersMock);
-        when(requestHeadersMock.retrieve()).thenReturn(responseMock);
         when(responseMock.bodyToFlux(RouteDTO.class)).thenReturn(Flux.just(routeDTOS));
         Flux<RouteDTO> actualRoutes = this.routeService.getAvailableRoutes();
         StepVerifier.create(actualRoutes)
@@ -96,9 +96,6 @@ public class WhenGettingAllAvailableRoutes {
 
         RouteDTO[] routes = new RouteDTO[] { routeOperatedByRyanair , routeDTODoesntOperatedByRyanair, secondRouteOperatedByRyanairDTO};
 
-        when(webClientMock.get()).thenReturn(requestHeadersUriMock);
-        when(requestHeadersUriMock.uri("/routes")).thenReturn(requestHeadersMock);
-        when(requestHeadersMock.retrieve()).thenReturn(responseMock);
         when(responseMock.bodyToFlux(RouteDTO.class)).thenReturn(Flux.just(routes));
         Mono<Route> actualRoute = this.routeService.getRoute("DUB", "MAD");
         StepVerifier.create(actualRoute)
@@ -143,9 +140,7 @@ public class WhenGettingAllAvailableRoutes {
                 thirdRouteOperatedByRyanair
         };
 
-        when(webClientMock.get()).thenReturn(requestHeadersUriMock);
-        when(requestHeadersUriMock.uri("/routes")).thenReturn(requestHeadersMock);
-        when(requestHeadersMock.retrieve()).thenReturn(responseMock);
+
         when(responseMock.bodyToFlux(RouteDTO.class)).thenReturn(Flux.just(routes));
         Mono<Route> actualRoute = this.routeService.getRoute("DUB", "MAD");
         StepVerifier.create(actualRoute)

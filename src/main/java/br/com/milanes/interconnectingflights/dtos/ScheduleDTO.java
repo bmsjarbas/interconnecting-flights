@@ -10,11 +10,6 @@ public class ScheduleDTO {
         this.month = month;
         this.days = days;
     }
-
-    public int getMonth() {
-        return month;
-    }
-
     public List<ScheduleDayDTO> getDays() {
         return days;
     }

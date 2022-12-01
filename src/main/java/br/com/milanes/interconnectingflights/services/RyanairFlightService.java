@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class RyanairFlightService implements FlightService {
     private WebClient webClient;
     public RyanairFlightService(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("").build();
+        this.webClient = webClientBuilder.baseUrl("https://services-api.ryanair.com").build();
     }
 
     @Override
@@ -25,12 +25,17 @@ public class RyanairFlightService implements FlightService {
         int flightYear = departureDateTime.getYear();
         int flightMonth = departureDateTime.getMonth().getValue();
         int flightDayOfTheMonth = departureDateTime.getDayOfMonth();
+        String uri = String.format("/timtbl/3/schedules/{departure}/{arrival}/years/{year}/months/{month}",
+                departure,
+                arrival,
+                flightYear,
+                flightMonth);
         return this.webClient
                 .get()
 //                .uri(uriBuilder -> uriBuilder
 //                        .path("/schedule/{departure}/{arrival}/years/{year}/months/{month}")
 //                        .build(departure, arrival, flightYear, flightMonth))
-                .uri("")
+                .uri(uri)
                 .retrieve()
                 .bodyToMono(ScheduleDTO.class)
                 .flatMapMany(scheduleDTO-> Flux.fromIterable(scheduleDTO.getDays()))
