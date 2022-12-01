@@ -35,11 +35,11 @@ public class WhenGettingAllAvailableRoutes {
     void setUp() {
         when(webClientBuilder.baseUrl(anyString())).thenReturn(webClientBuilder);
         when(webClientBuilder.baseUrl(anyString()).build()).thenReturn(webClientMock);
-        this.routeService = new RouteService(webClientBuilder);
+        this.routeService = new RyanairRouteService(webClientBuilder);
     }
 
     @Test
-    void onlyFlightsOperatedByRyanairShouldBeReturned() {
+    void onlyRoutesOperatedByRyanairShouldBeReturned() {
 
         RouteDTO routeOperatedByRyanair = new RouteDTO(
                 "DUB",

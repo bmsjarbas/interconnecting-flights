@@ -11,7 +11,7 @@ public class FlightBuilder {
     private final String arrivalAirport;
     private final String departureAirport;
     private final LocalDateTime flightDepartureDateTime;
-    private final LocalDateTime flightArrivalDateTime;
+    private LocalDateTime flightArrivalDateTime;
 
 
     public FlightBuilder(String departureFrom,

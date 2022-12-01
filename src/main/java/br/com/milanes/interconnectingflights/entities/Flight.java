@@ -6,6 +6,14 @@ import java.util.List;
 
 public class Flight {
     private LinkedList<Leg> legs;
+    public static final int MIN_HOURS_INTERVAL_TO_CONNECTING = 2;
+
+    public Leg firstFlightLeg() {
+        return this.legs.getFirst();
+    }
+    public Leg lastFlightLeg() {
+        return this.legs.getLast();
+    }
 
     public Flight(String departureAirport,
                   String arrivalAirport,
@@ -16,15 +24,33 @@ public class Flight {
         legs.add(leg);
     }
 
+    public Flight(Flight firstFlight, Flight connectingFlight) {
+        this.legs = new LinkedList<>();
+        legs.add(firstFlight.firstFlightLeg());
+        addConnectingLeg(connectingFlight.firstFlightLeg());
+    }
+
+    private void addConnectingLeg(Leg connectingLeg) {
+        if (legs.size() != 1) {
+            return;
+        }
+        Leg firstLeg = legs.getFirst();
+        LocalDateTime expectedDepartureTimeOfConnectingFlight = firstLeg
+                .getArrivalDateTime()
+                .plusHours(MIN_HOURS_INTERVAL_TO_CONNECTING);
+
+        if ((connectingLeg.getDepartureDateTime().isAfter(expectedDepartureTimeOfConnectingFlight) ||
+                connectingLeg.getDepartureDateTime().isEqual(expectedDepartureTimeOfConnectingFlight))) {
+            legs.add(connectingLeg);
+        }
+
+    }
+
     public long getStops() {
         return legs.size() - 1;
     }
 
-    public List<Leg> getLegs() {
-        return legs;
-    }
-
-    public LocalDateTime getDepartureDatetime(){
+    public LocalDateTime getDepartureDatetime() {
         return legs.getFirst().getDepartureDateTime();
     }
 
