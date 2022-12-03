@@ -1,5 +1,6 @@
 package br.com.milanes.interconnectingflights.services;
 
+import br.com.milanes.interconnectingflights.configs.RouteServiceConfiguration;
 import br.com.milanes.interconnectingflights.dtos.RouteDTO;
 import br.com.milanes.interconnectingflights.entities.Route;
 import org.springframework.stereotype.Service;
@@ -10,10 +11,12 @@ import reactor.core.publisher.Mono;
 @Service
 public class RyanairRouteService implements RouteService {
     private WebClient webClient;
+    RouteServiceConfiguration routeServiceConfiguration;
 
-    RyanairRouteService(WebClient.Builder webClientBuilder){
+    public RyanairRouteService(WebClient.Builder webClientBuilder, RouteServiceConfiguration routeServiceConfiguration){
+        this.routeServiceConfiguration = routeServiceConfiguration;
         this.webClient = webClientBuilder
-                .baseUrl("https://services-api.ryanair.com")
+                .baseUrl(routeServiceConfiguration.getServerAddress())
                 .build();
     }
 

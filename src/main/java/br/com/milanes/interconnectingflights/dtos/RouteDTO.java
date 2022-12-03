@@ -13,6 +13,8 @@ public class RouteDTO {
         this.operator = operator;
     }
 
+    public RouteDTO(){}
+
     public String getAirportFrom() {
         return airportFrom;
     }

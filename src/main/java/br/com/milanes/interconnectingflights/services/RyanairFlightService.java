@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class RyanairFlightService implements FlightService {
     private WebClient webClient;
     public RyanairFlightService(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("https://services-api.ryanair.com").build();
+        this.webClient = webClientBuilder.baseUrl("").build();
     }
 
     @Override

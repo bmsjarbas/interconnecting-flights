@@ -1,5 +1,6 @@
 package br.com.milanes.interconnectingflights.services;
 
+import br.com.milanes.interconnectingflights.configs.RouteServiceConfiguration;
 import br.com.milanes.interconnectingflights.dtos.RouteDTO;
 import br.com.milanes.interconnectingflights.entities.Route;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,17 +29,21 @@ public class WhenGettingAllAvailableRoutes {
     private WebClient.RequestHeadersUriSpec requestHeadersUriMock;
     @Mock
     private WebClient.ResponseSpec responseMock;
+    RouteServiceConfiguration routeServiceConfiguration;
 
     RouteService routeService;
 
     @BeforeEach
     void setUp() {
+
         when(webClientBuilder.baseUrl(anyString())).thenReturn(webClientBuilder);
         when(webClientBuilder.baseUrl(anyString()).build()).thenReturn(webClientMock);
         when(webClientMock.get()).thenReturn(requestHeadersUriMock);
         when(requestHeadersUriMock.uri("/locate/3/routes")).thenReturn(requestHeadersMock);
         when(requestHeadersMock.retrieve()).thenReturn(responseMock);
-        this.routeService = new RyanairRouteService(webClientBuilder);
+        routeServiceConfiguration = new RouteServiceConfiguration();
+        routeServiceConfiguration.setServerAddress("http://localhost/");
+        this.routeService = new RyanairRouteService(webClientBuilder, routeServiceConfiguration);
     }
 
     @Test
