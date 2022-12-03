@@ -5,11 +5,11 @@ import br.com.milanes.interconnectingflights.entities.Leg;
 import java.time.LocalDateTime;
 
 public class LegModel {
-    public final String departureAirport;
-    public final String arrivalAirport;
-    public final LocalDateTime departureDateTime;
+    public String departureAirport;
+    public String arrivalAirport;
+    public LocalDateTime departureDateTime;
 
-    public final LocalDateTime arrivalDateTime;
+    public LocalDateTime arrivalDateTime;
 
     public LegModel(Leg entity) {
         this.departureAirport = entity.getDepartureAirport();
@@ -17,5 +17,7 @@ public class LegModel {
         this.departureDateTime = entity.getDepartureDateTime();
         this.arrivalDateTime = entity.getArrivalDateTime();
     }
+
+    private LegModel(){}
 
 }

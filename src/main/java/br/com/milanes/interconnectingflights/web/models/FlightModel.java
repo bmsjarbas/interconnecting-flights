@@ -13,4 +13,6 @@ public class FlightModel {
         this.stops = entity.getStops();
         this.legs = entity.getLegs().stream().map(LegModel::new).collect(Collectors.toList());
     }
+
+    private FlightModel(){}
 }
