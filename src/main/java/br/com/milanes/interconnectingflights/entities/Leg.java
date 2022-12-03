@@ -1,7 +1,6 @@
 package br.com.milanes.interconnectingflights.entities;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Leg {
     private String departureAirport;

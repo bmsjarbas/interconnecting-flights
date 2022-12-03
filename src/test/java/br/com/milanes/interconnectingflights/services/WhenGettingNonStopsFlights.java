@@ -62,7 +62,7 @@ public class WhenGettingNonStopsFlights {
         String isoArrivalDatetime = "2023-01-01T13:00:00";
         LocalDateTime departureTimeForFirstFlight = LocalDateTime.parse(isoDepartureDate);
         LocalDateTime arrivalDatetimeForFirstFlight = LocalDateTime.parse(isoArrivalDatetime);
-        String uri = String.format("/timtbl/3/schedules/{departure}/{arrival}/years/{year}/months/{month}",
+        String uri = String.format("/timtbl/3/schedules/%s/%s/years/%s/months/%s",
                 departureAirport,
                 arrivalAirport,
                 departureTimeForFirstFlight.getYear(),

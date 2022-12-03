@@ -1,19 +1,15 @@
 package br.com.milanes.interconnectingflights.services;
 
-import br.com.milanes.interconnectingflights.builders.FlightBuilder;
 import br.com.milanes.interconnectingflights.entities.Flight;
-import br.com.milanes.interconnectingflights.entities.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
 
 @Service
 public class RyanairSchedulingService implements SchedulingService {
 
-    public static final int MIN_INTERVAL_TO_CONNECTING = 2;
     private final FlightService flightService;
     private final RouteService routeService;
 

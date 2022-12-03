@@ -25,16 +25,13 @@ public class RyanairFlightService implements FlightService {
         int flightYear = departureDateTime.getYear();
         int flightMonth = departureDateTime.getMonth().getValue();
         int flightDayOfTheMonth = departureDateTime.getDayOfMonth();
-        String uri = String.format("/timtbl/3/schedules/{departure}/{arrival}/years/{year}/months/{month}",
+        String uri = String.format("/timtbl/3/schedules/%s/%s/years/%s/months/%s",
                 departure,
                 arrival,
                 flightYear,
                 flightMonth);
         return this.webClient
                 .get()
-//                .uri(uriBuilder -> uriBuilder
-//                        .path("/schedule/{departure}/{arrival}/years/{year}/months/{month}")
-//                        .build(departure, arrival, flightYear, flightMonth))
                 .uri(uri)
                 .retrieve()
                 .bodyToMono(ScheduleDTO.class)

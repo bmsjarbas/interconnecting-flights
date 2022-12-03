@@ -3,14 +3,14 @@ package br.com.milanes.interconnectingflights.dtos;
 public class RouteDTO {
     private String airportFrom;
     private String airportTo;
-    private String airportConnectingTo;
-    private String flightOperator;
+    private String connectingAirport;
+    private String operator;
 
-    public RouteDTO(String airportFrom, String airportTo, String airportConnectingTo, String flightOperator) {
+    public RouteDTO(String airportFrom, String airportTo, String connectingAirport, String operator) {
         this.airportFrom = airportFrom;
         this.airportTo = airportTo;
-        this.airportConnectingTo = airportConnectingTo;
-        this.flightOperator = flightOperator;
+        this.connectingAirport = connectingAirport;
+        this.operator = operator;
     }
 
     public String getAirportFrom() {
@@ -20,11 +20,11 @@ public class RouteDTO {
     public String getAirportTo() {
         return airportTo;
     }
-    public String getAirportConnectingTo() {
-        return airportConnectingTo;
+    public String getConnectingAirport() {
+        return connectingAirport;
     }
 
-    public String getFlightOperator() {
-        return flightOperator;
+    public String getOperator() {
+        return operator;
     }
 }

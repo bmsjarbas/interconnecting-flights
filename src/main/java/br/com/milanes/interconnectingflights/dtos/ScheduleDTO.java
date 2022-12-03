@@ -14,9 +14,3 @@ public class ScheduleDTO {
         return days;
     }
 }
-
-
-
-
-
-

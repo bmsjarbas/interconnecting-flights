@@ -21,12 +21,13 @@ public class RyanairRouteService implements RouteService {
         return webClient.get().uri("/locate/3/routes")
                 .retrieve()
                 .bodyToFlux(RouteDTO.class)
-                .filter(routeDTO -> routeDTO.getAirportConnectingTo() == null &&
-                        routeDTO.getFlightOperator().equals("Ryanair"));
+                .filter(routeDTO ->
+                        routeDTO.getConnectingAirport() == null &&
+                        routeDTO.getOperator() != null && routeDTO.getOperator()
+                        .equalsIgnoreCase("ryanair"));
     }
 
     public Mono<Route> getRoute(String airportFrom, String airportTo) {
-
         return getAvailableRoutes()
                 .filter(dto ->
                         !dto.getAirportFrom().equals(airportFrom) &&
