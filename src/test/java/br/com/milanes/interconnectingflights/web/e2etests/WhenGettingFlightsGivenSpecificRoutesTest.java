@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class WhenGettingFlightsGivenSpecificRoutes {
+public class WhenGettingFlightsGivenSpecificRoutesTest {
     @Autowired
     private WebTestClient webTestClient;
 

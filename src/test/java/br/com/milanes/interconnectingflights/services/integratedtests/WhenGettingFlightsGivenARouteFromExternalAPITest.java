@@ -1,13 +1,9 @@
 package br.com.milanes.interconnectingflights.services.integratedtests;
 
 import br.com.milanes.interconnectingflights.configs.FlightServiceConfiguration;
-import br.com.milanes.interconnectingflights.configs.RouteServiceConfiguration;
-import br.com.milanes.interconnectingflights.dtos.FlightDTO;
 import br.com.milanes.interconnectingflights.entities.Flight;
 import br.com.milanes.interconnectingflights.services.FlightService;
-import br.com.milanes.interconnectingflights.services.RouteService;
 import br.com.milanes.interconnectingflights.services.RyanairFlightService;
-import br.com.milanes.interconnectingflights.services.RyanairRouteService;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,17 +11,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Flux;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import static br.com.milanes.interconnectingflights.helpers.JSONHelpers.getJson;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class WhenGettingFlightsGivenARouteFromExternalAPI {
+public class WhenGettingFlightsGivenARouteFromExternalAPITest {
 
     MockWebServer mockWebServer;
     private FlightService flightService;

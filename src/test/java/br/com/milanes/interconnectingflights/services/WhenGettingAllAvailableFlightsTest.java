@@ -18,7 +18,7 @@ import java.util.Arrays;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class WhenGettingAllAvailableFlights {
+public class WhenGettingAllAvailableFlightsTest {
     @Mock
     private RouteService routeService;
     @Mock
@@ -26,7 +26,7 @@ public class WhenGettingAllAvailableFlights {
 
     private SchedulingService schedulingService;
 
-    public WhenGettingAllAvailableFlights() {
+    public WhenGettingAllAvailableFlightsTest() {
     }
 
     @BeforeEach

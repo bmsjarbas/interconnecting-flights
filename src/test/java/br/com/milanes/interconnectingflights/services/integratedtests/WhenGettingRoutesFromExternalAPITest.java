@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
-public class WhenGettingRoutesFromExternalAPI {
+public class WhenGettingRoutesFromExternalAPITest {
     MockWebServer mockWebServer;
     private RouteService routeService;
     private RouteServiceConfiguration routeServiceConfiguration;
