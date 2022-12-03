@@ -40,10 +40,10 @@ jobs:
       run: mvn -B -Dmaven.test.failure.ignore=true test -Dtest='br.com.milanes.interconnectingflights.web.e2etests.*Test'
 
     - name: Report
-        uses: dorny/test-reporter@v1
-        if: always()
-        with:
-          name: Maven Tests
-          path: target/surefire-reports/*.xml
-          reporter: java-junit
-          fail-on-error: true
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: Maven Tests
+        path: target/surefire-reports/*.xml
+        reporter: java-junit
+        fail-on-error: true
