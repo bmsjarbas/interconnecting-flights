@@ -6,6 +6,5 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface RouteService {
-    Flux<RouteDTO> getAvailableRoutes();
     Mono<Route> getRoute(String airportFrom, String airportTo);
 }

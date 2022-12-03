@@ -1,7 +1,6 @@
 package br.com.milanes.interconnectingflights.services.integratedtests;
 
 import br.com.milanes.interconnectingflights.configs.RouteServiceConfiguration;
-import br.com.milanes.interconnectingflights.dtos.RouteDTO;
 import br.com.milanes.interconnectingflights.services.RouteService;
 import br.com.milanes.interconnectingflights.services.RyanairRouteService;
 import okhttp3.mockwebserver.MockResponse;
@@ -16,7 +15,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.io.IOException;
-import java.util.List;
 
 import static br.com.milanes.interconnectingflights.helpers.JSONHelpers.getJson;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -43,7 +41,7 @@ public class WhenGettingRoutesFromExternalAPI {
     }
 
     @Test
-    void aListOfRouteDTOsIsReturned() throws InterruptedException {
+    void theRouteIsReturned() throws InterruptedException {
         String routePath = "/locate/3/routes";
 
         mockWebServer.enqueue(
@@ -52,24 +50,18 @@ public class WhenGettingRoutesFromExternalAPI {
                         .setBody(getJson("all-routes.json"))
         );
 
-        List<RouteDTO> routes = routeService.getAvailableRoutes().collectList().block();;
+        br.com.milanes.interconnectingflights.entities.Route route = routeService
+                .getRoute(
+                        "DUB",
+                        "WRO").block();;
         RecordedRequest request = mockWebServer.takeRequest();
 
-        assertEquals(2, routes.size());
+        assertEquals("DUB", route.getDepartureAirport());
+        assertEquals("WRO", route.getArrivalAirport());
+        assertTrue(route.getAvailableConnectingAirports().stream().allMatch(airport -> airport.equalsIgnoreCase("STN")));
+
         assertEquals("GET", request.getMethod());
         assertEquals(routePath, request.getPath());
-        assertTrue(routes
-                .stream()
-                .anyMatch(routeDTO -> routeDTO.getAirportFrom().equalsIgnoreCase("DUB") &&
-                        routeDTO.getAirportTo().equalsIgnoreCase("KUN")));
-        assertTrue(routes
-                .stream()
-                .anyMatch(routeDTO -> routeDTO.getAirportFrom().equalsIgnoreCase("AAL") &&
-                        routeDTO.getAirportTo().equalsIgnoreCase("ARN")));
-
-        assertTrue(routes.stream().allMatch(routeDTO -> routeDTO
-                .getOperator()
-                .equalsIgnoreCase("ryanair")));
 
     }
 

@@ -20,7 +20,7 @@ public class RyanairRouteService implements RouteService {
                 .build();
     }
 
-    public Flux<RouteDTO> getAvailableRoutes() {
+    private Flux<RouteDTO> getAvailableRoutes() {
         return webClient.get().uri("/locate/3/routes")
                 .retrieve()
                 .bodyToFlux(RouteDTO.class)

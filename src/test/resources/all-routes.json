@@ -1,7 +1,7 @@
 [
   {
-    "airportFrom": "AAL",
-    "airportTo": "ARN",
+    "airportFrom": "DUB",
+    "airportTo": "STN",
     "connectingAirport": null,
     "newRoute": false,
     "seasonalRoute": false,
@@ -13,7 +13,19 @@
   },
   {
     "airportFrom": "DUB",
-    "airportTo": "KUN",
+    "airportTo": "WRO",
+    "connectingAirport": null,
+    "newRoute": false,
+    "seasonalRoute": false,
+    "operator": "RYANAIR",
+    "carrierCode": "FR",
+    "group": "GENERIC",
+    "similarArrivalAirportCodes": [],
+    "tags": []
+  },
+  {
+    "airportFrom": "STN",
+    "airportTo": "WRO",
     "connectingAirport": null,
     "newRoute": false,
     "seasonalRoute": false,

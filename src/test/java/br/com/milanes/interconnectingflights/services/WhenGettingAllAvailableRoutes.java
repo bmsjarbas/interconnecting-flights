@@ -47,39 +47,6 @@ public class WhenGettingAllAvailableRoutes {
     }
 
     @Test
-    void onlyRoutesOperatedByRyanairShouldBeReturned() {
-
-        RouteDTO routeOperatedByRyanair = new RouteDTO(
-                "DUB",
-                "MAD",
-                null,
-                "Ryanair");
-
-        RouteDTO secondRouteOperatedByRyanairDTO = new RouteDTO(
-                "DUB",
-                "LHR",
-                null,
-                "Ryanair");
-
-        RouteDTO routeDoesntOperatedByRyanair = new RouteDTO(
-                "MAD",
-                "DUB",
-                null,
-                "FakeAirline");
-
-        RouteDTO[] routeDTOS = new RouteDTO[] { routeOperatedByRyanair , routeDoesntOperatedByRyanair, secondRouteOperatedByRyanairDTO};
-
-        when(responseMock.bodyToFlux(RouteDTO.class)).thenReturn(Flux.just(routeDTOS));
-        Flux<RouteDTO> actualRoutes = this.routeService.getAvailableRoutes();
-        StepVerifier.create(actualRoutes)
-                .expectNext(routeOperatedByRyanair)
-                .expectNext(secondRouteOperatedByRyanairDTO)
-                .expectComplete()
-                .verify();
-
-    }
-
-    @Test
     void onlyRoutesWithAirportConnectingIsNullAreListed() {
         RouteDTO routeOperatedByRyanair = new RouteDTO(
                 "DUB",
