@@ -13,7 +13,7 @@ public class RouteDTO {
         this.operator = operator;
     }
 
-    public RouteDTO(){}
+    private RouteDTO(){}
 
     public String getAirportFrom() {
         return airportFrom;

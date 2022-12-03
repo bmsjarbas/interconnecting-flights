@@ -1,0 +1,58 @@
+{
+  "month": 7,
+  "days": [
+    {
+      "day": 1,
+      "flights": [
+        {
+          "carrierCode": "FR",
+          "number": "202",
+          "departureTime": "06:00",
+          "arrivalTime": "07:20"
+        },
+        {
+          "carrierCode": "FR",
+          "number": "204",
+          "departureTime": "07:45",
+          "arrivalTime": "09:05"
+        },
+        {
+          "carrierCode": "FR",
+          "number": "255",
+          "departureTime": "10:15",
+          "arrivalTime": "11:35"
+        },
+        {
+          "carrierCode": "FR",
+          "number": "211",
+          "departureTime": "11:00",
+          "arrivalTime": "12:20"
+        },
+        {
+          "carrierCode": "FR",
+          "number": "272",
+          "departureTime": "13:30",
+          "arrivalTime": "14:50"
+        },
+        {
+          "carrierCode": "FR",
+          "number": "288",
+          "departureTime": "18:15",
+          "arrivalTime": "19:35"
+        },
+        {
+          "carrierCode": "FR",
+          "number": "290",
+          "departureTime": "19:40",
+          "arrivalTime": "21:00"
+        },
+        {
+          "carrierCode": "FR",
+          "number": "292",
+          "departureTime": "21:55",
+          "arrivalTime": "23:15"
+        }
+      ]
+    }
+  ]
+}

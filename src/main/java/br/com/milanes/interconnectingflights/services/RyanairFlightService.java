@@ -1,6 +1,7 @@
 package br.com.milanes.interconnectingflights.services;
 
 import br.com.milanes.interconnectingflights.builders.FlightBuilder;
+import br.com.milanes.interconnectingflights.configs.FlightServiceConfiguration;
 import br.com.milanes.interconnectingflights.dtos.ScheduleDTO;
 import br.com.milanes.interconnectingflights.entities.Flight;
 import org.springframework.stereotype.Service;
@@ -12,8 +13,11 @@ import java.time.LocalDateTime;
 @Service
 public class RyanairFlightService implements FlightService {
     private WebClient webClient;
-    public RyanairFlightService(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("").build();
+    private FlightServiceConfiguration flightServiceConfiguration;
+    public RyanairFlightService(WebClient.Builder webClientBuilder,
+                                FlightServiceConfiguration flightServiceConfiguration) {
+        this.webClient = webClientBuilder.baseUrl(flightServiceConfiguration.getServerAddress()).build();
+        this.flightServiceConfiguration = flightServiceConfiguration;
     }
 
     @Override

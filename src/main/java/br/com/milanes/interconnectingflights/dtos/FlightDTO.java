@@ -13,6 +13,7 @@ public class FlightDTO {
         this.arrivalTime = arrivalTime;
     }
 
+    private FlightDTO() {}
     public String getDepartureTime() {
         return departureTime;
     }

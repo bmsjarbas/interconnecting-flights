@@ -6,6 +6,7 @@ public class ScheduleDTO {
     private int month;
     private List<ScheduleDayDTO> days;
 
+    private ScheduleDTO() {}
     public ScheduleDTO(int month, List<ScheduleDayDTO> days) {
         this.month = month;
         this.days = days;

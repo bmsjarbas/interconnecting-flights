@@ -57,7 +57,7 @@ public class WhenGettingRoutesFromExternalAPI {
 
         assertEquals(2, routes.size());
         assertEquals("GET", request.getMethod());
-        assertEquals("/locate/3/routes", request.getPath());
+        assertEquals(routePath, request.getPath());
         assertTrue(routes
                 .stream()
                 .anyMatch(routeDTO -> routeDTO.getAirportFrom().equalsIgnoreCase("DUB") &&

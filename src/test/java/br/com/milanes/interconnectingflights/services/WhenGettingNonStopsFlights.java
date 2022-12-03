@@ -1,5 +1,6 @@
 package br.com.milanes.interconnectingflights.services;
 
+import br.com.milanes.interconnectingflights.configs.FlightServiceConfiguration;
 import br.com.milanes.interconnectingflights.dtos.FlightDTO;
 import br.com.milanes.interconnectingflights.dtos.ScheduleDTO;
 import br.com.milanes.interconnectingflights.dtos.ScheduleDayDTO;
@@ -34,12 +35,15 @@ public class WhenGettingNonStopsFlights {
     private WebClient.ResponseSpec responseMock;
 
     private RyanairFlightService flightService;
+    private FlightServiceConfiguration flightServiceConfiguration;
 
     @BeforeEach
     void setUp() {
+        flightServiceConfiguration = new FlightServiceConfiguration();
+        flightServiceConfiguration.setServerAddress("http://localhost");
         when(webClientBuilder.baseUrl(anyString())).thenReturn(webClientBuilder);
         when(webClientBuilder.baseUrl(anyString()).build()).thenReturn(webClientMock);
-        this.flightService = new RyanairFlightService(webClientBuilder);
+        this.flightService = new RyanairFlightService(webClientBuilder, flightServiceConfiguration);
     }
 
     @Test
